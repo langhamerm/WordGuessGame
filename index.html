@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HangMorty!</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="assets/javascript/game.js"></script>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>HangMorty</h1>
+                    <h2>A Rick and Morty Themed Hangman Game!</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Pick letters from the alphabet or whatever to solve for the word!</p>
+                    <p>.....Oh yeah or else Morty gets hung!</p>
+                </div>
+                <div class="col-md-6">
+                    <p>If you're tiny non-genius brains need a hint too bad you're not getting any!</p>
+                    <p>Anyways I'm going to take a shit. Press any key to begin!</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p id="letterblanks"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p id="letterguesses"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p id="wrongGuesses"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <canvas id="morty"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button id="restart">Try Again</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
