@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HangMorty</title>
+        <meta charset="UTF-8">
+    </head>
+    
+    <body>
+        <h1>HangMorty</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>HangMorty</h1>
+                    <h2>A Rick and Morty Themed Hangman Game!</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Pick letters from the alphabet or whatever to solve for the word!</p>
+                    <p>.....Oh yeah or else Morty gets hung!</p>
+                </div>
+                <div class="col-md-6">
+                    <p>If you're tiny non-genius brains need a hint too bad you're not getting any!</p>
+                    <p>Anyways I'm going to take a shit. Press any key to begin!</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p id="letterblanks"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p id="letterguesses"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p id="livesLeft"></p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <canvas id="morty"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button id="restart">Try Again</button>
+                </div>
+            </div>
+        </div>
+        
+
+        <script>
+        // Create an array of words
+            var words = [
+            "WUBBA LUBBA DUB DUB",
+            "GET SCHWIFTY",
+            "PICKLE RICK",
+            "TINY RICK",
+            "PLUMBUS",
+            "SQUANCH" ];
+        // Pick a random word
+            var word = words[Math.floor(Math.random() * words.length)];
+        // Set up the answer array
+            var answerArray = [];
+            for (var i = 0; i < word.length; i++) {
+                answerArray[i] = "_";
+            }
+            var remainingLetters = word.length;
+
+            var wins = 0;
+            var losses = 0;
+
+            var gameRunning = false;
+
+            var game;
+
+
+            var lives = 10;
+            var counter;
+
+            var space;
+
+            var word;
+            var guess;
+            var guesses = [ ];
+        
+
+            var letterBlanks = document.getElementById("letterblanks");
+            var letterguesses = document.getElementById("letterguesses");
+            var livesLeft = document.getElementById("livesLeft");
+
+            document.onkeypress = function(event) {
+                // console.log(event);
+                var keyPress = event.key;
+                if (gameRunning === false) {
+                    gameRunning = true;
+                    reset();
+                }
+                console.log(keyPress);
+                play(keyPress);              
+            };
+
+
+
+
+        // The game loop
+
+            hangman = function() {
+                wordHolder = document.getElementById("letterguesses");
+                correct = document.createElement("ul");
+
+                for (var i = 0; i < word.length; i++) {
+                    correct.setAttribute("id", "my-word");
+                    guess = document.createElement("li");
+                    guess.setAttribute("class", "guess");
+                    if (word[i] === "-") {
+                        guess.innerHTML = "-";
+                        space = 1;
+                    } 
+                    else {
+                        guess.innerHTML = "_";
+                    }
+                } 
+
+                guesses.push(guess);
+                wordHolder.appendChild(correct);
+                correct.appendChild(guess);
+            
+
+                while (remainingLetters > 0) {
+                    alert(answerArray.join(" "));
+                    var guess = prompt("Pick a letter! Guess wrong if you wanna torture Morty");
+                    if (guess === null) {
+                        break;
+                    } 
+                    else if (guess.length !== 1) {
+                        alert("Please enter a single letter.");
+                    } 
+                    else {
+                        for (var j = 0; j < word.length; j++) {
+                            if (word[j] === guess) {
+                            answerArray[j] = guess;
+                            remainingLetters--;
+                            }
+                        }
+                    }
+                }
+            }
+
+            reset = function() {
+                wordList = [
+                    "wubba lubba dub dub",
+                    "get schwifty",
+                    "pickle rick",
+                    "tiny rick",
+                    "plumbus",
+                    "squanch"
+                ];
+                guesses = [ ];
+                lives = 10;
+                counter = 0;
+                space = 0;
+                word = wordList[Math.floor(Math.random() * wordList.length)];
+                word = word.replace(/\s/g, "-");
+                console.log(word);
+                hangman();
+                comments();
+            }
+
+            comments = function () {
+                livesLeft.innerHTML = "You have " + lives + " lives";
+                if (lives < 1) {
+                    livesLeft.innerHTML = alert("Game Over");
+                }
+                for (var i = 0; i < guesses.length; i++) {
+                if (counter + space === guesses.length) {
+                    livesLeft.innerHTML = alert("You Win!");
+                }
+                }
+            };
+
+            play = function (keyPress) {
+            
+            compareLetters(word, keyPress);
+            comments();
+            }   
+
+            compareLetters = function(string, letter) {
+                var hasLetter = string.includes(letter);
+                var livesLeft = document.getElementById("livesLeft");
+                if(hasLetter){
+                    // Replace Dash
+                    string = string.replace(/\s+/g, letter);    
+                }
+                else{
+                    livesLeft.innerHTML = lives--;
+            }
+        
+    }
+
+
+            winner = function() {
+                alert(answerArray.join(" "));
+                alert("Looks like Morty will live another day, the answer was " + word);
+            }
+
+
+        </script>
+    </body>  
+</html>
