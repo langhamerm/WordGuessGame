@@ -14,48 +14,49 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>HangMorty</h1>
-                    <h2>A Rick and Morty Themed Hangman Game!</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>Pick letters from the alphabet or whatever to solve for the word!</p>
-                    <p>.....Oh yeah or else Morty gets hung!</p>
-                </div>
-                <div class="col-md-6">
-                    <p>If you're tiny non-genius brains need a hint too bad you're not getting any!</p>
-                    <p>Anyways I'm going to take a shit. Press any key to begin!</p>
+                    <h2>
+                        <p>Pick letters from the alphabet or whatever to solve for the word!</p>
+                        <p>.....Oh yeah or else Morty gets hung!</p>
+                        <p>If you're tiny non-genius brains need a hint too bad you're not getting any!</p>
+                        <p>Anyways I'm going to take a shit. Press any key 3 times to begin!</p>
+                    </h2>
                 </div>
             </div>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p id="letterblanks"></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p id="letterguesses"></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p id="livesLeft"></p>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <canvas id="morty"></canvas>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-4">
-                    <button id="restart">Try Again</button>
+                    <div id="guessedLetters"></div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-4" id="totalWins"></div>
+                </div>
+                <div class="col-md-4">
+                    <div id="remainingGuesses"></div>  
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 id="currentWord"></h1>
+                </div>
+                <div class="col-md-6">
+                        <canvas id="morty"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href="index.html">
+                        RESTART
+                        CLICK HERE!
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
     </body>
 </html>

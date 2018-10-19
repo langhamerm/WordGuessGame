@@ -58,6 +58,14 @@
         
 
         <script>
+            
+            window.onload = function() {
+                comments();
+                result();
+                compareLetters();
+            }
+
+
         // Create an array of words
             var words = [
             "WUBBA LUBBA DUB DUB",
@@ -105,7 +113,7 @@
                     reset();
                 }
                 console.log(keyPress);
-                play(keyPress);              
+                play(keyPress);            
             };
 
 
@@ -114,41 +122,20 @@
         // The game loop
 
             hangman = function() {
-                wordHolder = document.getElementById("letterguesses");
-                correct = document.createElement("ul");
-
-                for (var i = 0; i < word.length; i++) {
-                    correct.setAttribute("id", "my-word");
-                    guess = document.createElement("li");
-                    guess.setAttribute("class", "guess");
-                    if (word[i] === "-") {
-                        guess.innerHTML = "-";
-                        space = 1;
-                    } 
-                    else {
-                        guess.innerHTML = "_";
-                    }
-                } 
-
-                guesses.push(guess);
-                wordHolder.appendChild(correct);
-                correct.appendChild(guess);
-            
-
                 while (remainingLetters > 0) {
                     alert(answerArray.join(" "));
                     var guess = prompt("Pick a letter! Guess wrong if you wanna torture Morty");
                     if (guess === null) {
                         break;
-                    } 
+                    }
                     else if (guess.length !== 1) {
                         alert("Please enter a single letter.");
-                    } 
+                    }
                     else {
                         for (var j = 0; j < word.length; j++) {
                             if (word[j] === guess) {
-                            answerArray[j] = guess;
-                            remainingLetters--;
+                                answerArray[j] = guess;
+                                remainingLetters--;
                             }
                         }
                     }
@@ -172,7 +159,6 @@
                 word = word.replace(/\s/g, "-");
                 console.log(word);
                 hangman();
-                comments();
             }
 
             comments = function () {
@@ -181,17 +167,17 @@
                     livesLeft.innerHTML = alert("Game Over");
                 }
                 for (var i = 0; i < guesses.length; i++) {
-                if (counter + space === guesses.length) {
-                    livesLeft.innerHTML = alert("You Win!");
-                }
+                    if (counter + space === guesses.length) {
+                        livesLeft.innerHTML = alert("You Win!");
+                    }
                 }
             };
 
-            play = function (keyPress) {
+            // play = function (keyPress) {
             
-            compareLetters(word, keyPress);
-            comments();
-            }   
+            // compareLetters(word, keyPress);
+            // comments();
+            // };
 
             compareLetters = function(string, letter) {
                 var hasLetter = string.includes(letter);
@@ -202,15 +188,37 @@
                 }
                 else{
                     livesLeft.innerHTML = lives--;
-            }
-        
-    }
+                }
+            };
+
+            result = function () {
+                wordHolder = document.getElementById("letterguesses");
+                correct = document.createElement("ul");
+            
+                for (var i = 0; i < word.length; i++) {
+                    // correct.setAttribute();
+                    guess = document.createElement("li");
+                    // guess.setAttribute();
+                    if (word[i] === "-") {
+                        guess.innerHTML = "-";
+                        space = 1;
+                    } 
+                    else {
+                        guess.innerHTML = "_";
+                    };
+                };
+
+                guesses.push(guess);
+                wordHolder.appendChild(correct);
+                correct.appendChild(guess);
+                
+            };
 
 
             winner = function() {
                 alert(answerArray.join(" "));
                 alert("Looks like Morty will live another day, the answer was " + word);
-            }
+            };
 
 
         </script>

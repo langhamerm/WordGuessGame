@@ -144,8 +144,8 @@ window.onload = function(){
     // Restart
 
     document.getElementById("restart").onclick = function() {
-        correct.parentNode.removeChild(correct);
-        letterguessesElement.parentNode.removeChild(letters);
+        guessingWord.parentNode.removeChild(letters);
+        guessedLetters.parentNode.removeChild(letters);
         showClue.innerHTML = "";
         context.clearRect(0, 0, 400, 400);
         reset();
